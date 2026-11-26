@@ -148,6 +148,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
+    implementation("dev.chrisbanes.haze:haze:1.7.2")
 
     // Telegram TDLib
     implementation("io.github.tdlib-android:core:0.1.1")
