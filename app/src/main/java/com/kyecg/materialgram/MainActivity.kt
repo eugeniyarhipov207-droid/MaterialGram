@@ -147,18 +147,41 @@ class MainActivity : ComponentActivity() {
         tdClient.init()
 
         setContent {
-            MaterialGramTheme {
-                LoginScreen(
-                    authStep = authStep.value,
-                    authMessage = authState.value,
-                    authError = authError.value,
-                    onSendPhone = ::sendPhone,
-                    onSendCode = ::sendCode,
-                    onSendPassword = ::sendPassword
-                )
+    MaterialGramTheme {
+        if (authStep.value == "ready") {
+            val chatListViewModel = remember(tdClient) {
+                ChatListViewModel(tdClient)
             }
+
+            DisposableEffect(chatListViewModel) {
+                onDispose {
+                    chatListViewModel.close()
+                }
+            }
+
+            ChatListScreen(
+                viewModel = chatListViewModel,
+                onChatClick = { chatId ->
+                    android.widget.Toast.makeText(
+                        this@MainActivity,
+                        "Чат ID: $chatId",
+                        android.widget.Toast.LENGTH_SHORT
+                    ).show()
+                }
+            )
+        } else {
+            LoginScreen(
+                authStep = authStep.value,
+                authMessage = authState.value,
+                authError = authError.value,
+                onSendPhone = ::sendPhone,
+                onSendCode = ::sendCode,
+                onSendPassword = ::sendPassword
+            )
         }
     }
+}
+}
 
     private fun handleAuthorizationState(
         state: TdApi.AuthorizationState
