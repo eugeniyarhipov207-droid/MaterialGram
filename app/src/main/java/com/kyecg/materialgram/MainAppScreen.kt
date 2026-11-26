@@ -15,14 +15,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.graphics.Color
-import dev.chrisbanes.haze.HazeInput
 import dev.chrisbanes.haze.HazeState
-import dev.chrisbanes.haze.blur.HazeBlurStyle
-import dev.chrisbanes.haze.blur.hazeBlur
+import dev.chrisbanes.haze.hazeEffect
 import dev.chrisbanes.haze.hazeSource
 import dev.chrisbanes.haze.rememberHazeState
-
+import androidx.compose.ui.graphics.Color
 private enum class MainTab {
     Chats, Profile, Settings
 }
@@ -93,13 +90,10 @@ private fun FloatingBottomBar(
     Surface(
     modifier = modifier
         .fillMaxWidth()
-        .hazeBlur(
-            input = HazeInput.Sources(hazeState),
-            style = HazeBlurStyle {
-                blurRadius(24.dp)
-                backgroundColor(glassTint)
-                }
-                )
+          .hazeEffect(state = hazeState) {
+            blurRadius = 24.dp
+            backgroundColor = glassTint
+        }
         .shadow(
             elevation = 10.dp,
             shape = RoundedCornerShape(32.dp)

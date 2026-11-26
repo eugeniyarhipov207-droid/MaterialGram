@@ -42,12 +42,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.drinkless.tdlib.TdApi
 import java.util.Locale
-import dev.chrisbanes.haze.HazeInput
-import dev.chrisbanes.haze.HazeState
-import dev.chrisbanes.haze.hazeSource
-import dev.chrisbanes.haze.rememberHazeState
-import dev.chrisbanes.haze.blur.HazeBlurStyle
-import dev.chrisbanes.haze.blur.hazeBlur
+
 
 private val Purple = Color(0xFF7655D9)
 private val LightPurple = Color(0xFFEAE2FF)
